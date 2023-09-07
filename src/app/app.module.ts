@@ -9,6 +9,7 @@ import { CounterResultComponent } from './counter/counter-result/counter-result.
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter/counterStore/counter.reducer';
 import { CustdataInputComponent } from './counter/custdata-input/custdata-input.component';
+import { LandingPageComponent } from './auth/components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CustdataInputComponent } from './counter/custdata-input/custdata-input.
     CounterButtonComponent,
     CounterResultComponent,
     CustdataInputComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
