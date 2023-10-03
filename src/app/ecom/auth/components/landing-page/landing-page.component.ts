@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-
+  isFlipped : any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  flipCard(){
+    this.isFlipped = !this.isFlipped; 
+  }
 }
