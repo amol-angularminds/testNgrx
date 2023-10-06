@@ -29,7 +29,7 @@ const getProduct = {
 
 const updateProduct = {
   params: Joi.object().keys({
-    productId: Joi.required().required(),
+    productId: Joi.string(),
   }),
   body: Joi.object()
     .keys({
@@ -38,7 +38,7 @@ const updateProduct = {
       p_desc: Joi.string(),
       p_quantity: Joi.number(),
       category: Joi.string(),
-      discount_mrp: Joi.number(),
+      discount: Joi.number(),
       selling_mrp: Joi.number()
     })
     .min(1),

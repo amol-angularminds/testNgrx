@@ -2,40 +2,76 @@ const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema(
   {
-    p_name: {
+    name: {
       type: String,
       required: true,
       trim: true,
     },
-    original_mrp: {
-      type: Number,
-      required: true,
-    },
-    p_desc: {
+
+    description: {
       type: String,
       required: true,
-      trim: true,
       lowercase: true,
+      trim: true,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category', // Reference to the "categories" collection
       required: true,
-      trim: true,
-      lowercase: true,
     },
-    p_quantity: {
+    stockQuantity: {
       type: Number,
       required: true,
     },
-    discount: {
-      type: Number,
-      required: true,
-      lowercase: true,
+    pricing: {
+      price: {
+        type: Number,
+        required: true,
+      },
+      discount: {
+        type: Number,
+      },
+      MRP: {
+        type: Number,
+        required: true,
+      }
     },
-    selling_mrp: {
-      type: Number,
-      required: true,
+    shipping_details: {
+      weight: {
+        type: String
+      },
+      width: {
+        type: String
+      },
+      height: {
+        type: String
+      },
+      depth: {
+        type: String
+      }
     },
+    manufacture_details: {
+      model_number: {
+        type: String
+      },
+      release_date: {
+        type: Date
+      },
+    },
+    reviews: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User', // Reference to the "users" collection
+          required: true,
+        },
+        rating: {
+          type: Number,
+          required: true,
+        },
+        comment: String,
+      },
+    ],
   },
   {
     timestamps: true,

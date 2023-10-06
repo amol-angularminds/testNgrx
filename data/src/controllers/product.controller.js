@@ -25,7 +25,8 @@ const getProduct = catchAsync(async (req, res) => {
 });
 
 const updateProduct = catchAsync(async (req, res) => {
-  const product = await productService.updateUserById(req.params.productId, req.body);
+  console.log("kjhfdskkfksddkjfkjk",req.query.productId);
+  const product = await productService.updateUserById(req.query.productId, req.body);
   res.send(product);
 });
 

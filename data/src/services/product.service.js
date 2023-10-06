@@ -47,6 +47,7 @@ const getProductById = async (id) => {
  */
 const updateUserById = async (productId, updateBody) => {
   const product = await getProductById(productId);
+  console.log(product);
   if (!product) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
   }

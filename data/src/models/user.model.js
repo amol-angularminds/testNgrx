@@ -44,11 +44,30 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    phone: String,
+    orders: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order', // Reference to the "orders" collection
+      },
+    ]
   },
   {
     timestamps: true,
   }
 );
+
+// "username": "john_doe",
+//   "email": "john@example.com",
+//   "password": "hashed_password",
+//   "firstName": "John",
+//   "lastName": "Doe",
+//   "address": "123 Main St",
+//   "phone": "555-123-4567",
+//   "orders": [
+//     ObjectId("order_id_1"),
+//     ObjectId("order_id_2")
+//   ]
 
 // add plugin that converts mongoose to json
 userSchema.plugin(toJSON);
