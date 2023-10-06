@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    original_price: {
+    original_mrp: {
       type: Number,
       required: true,
     },
@@ -27,10 +27,14 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    discount_price: {
+    discount: {
       type: Number,
       required: true,
       lowercase: true,
+    },
+    selling_mrp: {
+      type: Number,
+      required: true,
     },
   },
   {

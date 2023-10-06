@@ -24,46 +24,35 @@ const addProduct = async (requestBody) => {
  * @param {number} [options.page] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
-const queryUsers = async (filter, options) => {
-  const users = await User.paginate(filter, options);
-  return users;
-};
+// const queryUsers = async (filter, options) => {
+//   const users = await User.paginate(filter, options);
+//   return users;
+// };
 
 /**
  * Get user by id
  * @param {ObjectId} id
  * @returns {Promise<User>}
  */
-const getUserById = async (id) => {
-  return User.findById(id);
+const getProductById = async (id) => {
+  return Products.findById(id);
 };
 
-/**
- * Get user by email
- * @param {string} email
- * @returns {Promise<User>}
- */
-const getUserByEmail = async (email) => {
-  return User.findOne({ email });
-};
 
 /**
- * Update user by id
- * @param {ObjectId} userId
+ * Update product by id
+ * @param {ObjectId} productId
  * @param {Object} updateBody
- * @returns {Promise<User>}
+ * @returns {Promise<Product>}
  */
-const updateUserById = async (userId, updateBody) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+const updateUserById = async (productId, updateBody) => {
+  const product = await getProductById(productId);
+  if (!product) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
   }
-  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
-  }
-  Object.assign(user, updateBody);
-  await user.save();
-  return user;
+  Object.assign(product, updateBody);
+  await product.save();
+  return product;
 };
 
 /**
@@ -71,20 +60,18 @@ const updateUserById = async (userId, updateBody) => {
  * @param {ObjectId} userId
  * @returns {Promise<User>}
  */
-const deleteUserById = async (userId) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+const deleteProductById = async (_id) => {
+  const product = await getProductById(_id);
+  if (!product) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
   }
-  await user.remove();
-  return user;
+  await product.remove();
+  return product;
 };
 
 module.exports = {
   addProduct,
-  queryUsers,
-  getUserById,
-  getUserByEmail,
+  getProductById,
   updateUserById,
-  deleteUserById,
+  deleteProductById,
 };

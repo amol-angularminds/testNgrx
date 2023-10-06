@@ -4,10 +4,11 @@ const registerProduct = {
   body: Joi.object().keys({
     p_name: Joi.string().required(),
     category: Joi.string().required(),
-    original_price: Joi.number().required(),
+    original_mrp: Joi.number().required(),
     p_desc: Joi.string().required(),
-    p_quantity: Joi.number().required().min(100),
-    discount_price: Joi.number(),
+    p_quantity: Joi.number().required(),
+    discount: Joi.number(),
+    selling_mrp: Joi.number(),
   }),
 };
 
@@ -22,13 +23,13 @@ const getProducts = {
 
 const getProduct = {
   params: Joi.object().keys({
-    // productId: Joi.string().custom(objectId),
+    productId: Joi.string().required(),
   }),
 };
 
 const updateProduct = {
   params: Joi.object().keys({
-    // productId: Joi.required().custom(objectId),
+    productId: Joi.required().required(),
   }),
   body: Joi.object()
     .keys({
@@ -37,14 +38,15 @@ const updateProduct = {
       p_desc: Joi.string(),
       p_quantity: Joi.number(),
       category: Joi.string(),
-      discount_price: Joi.number(),
+      discount_mrp: Joi.number(),
+      selling_mrp: Joi.number()
     })
     .min(1),
 };
 
 const deleteProduct = {
   params: Joi.object().keys({
-    // productId: Joi.string().custom(objectId),
+    productId: Joi.string(),
   }),
 };
 
