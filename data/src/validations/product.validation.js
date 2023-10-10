@@ -2,11 +2,11 @@ const Joi = require("joi");
 
 const registerProduct = {
   body: Joi.object().keys({
-    p_name: Joi.string().required(),
+    name: Joi.string().required(),
     category: Joi.string().required(),
     original_mrp: Joi.number().required(),
-    p_desc: Joi.string().required(),
-    p_quantity: Joi.number().required(),
+    description: Joi.string().required(),
+    stockQuantity: Joi.number().required(),
     discount: Joi.number(),
     selling_mrp: Joi.number(),
   }),
@@ -14,7 +14,7 @@ const registerProduct = {
 
 const getProducts = {
   query: Joi.object().keys({
-    p_name: Joi.string(),
+    name: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
@@ -33,10 +33,10 @@ const updateProduct = {
   }),
   body: Joi.object()
     .keys({
-      p_name: Joi.string(),
+      name: Joi.string(),
       original_price: Joi.number(),
-      p_desc: Joi.string(),
-      p_quantity: Joi.number(),
+      description: Joi.string(),
+      stockQuantity: Joi.number(),
       category: Joi.string(),
       discount: Joi.number(),
       selling_mrp: Joi.number()
