@@ -1,7 +1,23 @@
 const mongoose = require('mongoose');
 
 // Define the Category schema
-const categorySchema = new mongoose.Schema({
+const mainCategorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: String,
+  subCategories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'SubCategory', // Reference to the "SubCategory" collection
+    },
+  ]
+});
+
+
+const subCategorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -11,6 +27,10 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Create the Category model
-const Category = mongoose.model('Category', categorySchema);
+const mainCategory = mongoose.model('MainCategory', mainCategorySchema);
+const subCategory = mongoose.model('SubCategory', subCategorySchema);
 
-module.exports = Category;
+module.exports = {
+  mainCategory,
+  subCategory
+};

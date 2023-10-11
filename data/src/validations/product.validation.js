@@ -4,13 +4,26 @@ const registerProduct = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     category: Joi.string().required(),
-    original_mrp: Joi.number().required(),
     description: Joi.string().required(),
-    stockQuantity: Joi.number().required(),
-    discount: Joi.number(),
-    selling_mrp: Joi.number(),
+    stockQuantity: Joi.number(),
+    pricing: Joi.object().keys({
+      price: Joi.number(),
+      discount: Joi.number(),
+      MRP: Joi.number(),
+    }),
+    shipping_details: Joi.object().keys({
+      weight: Joi.number(),
+      width: Joi.number(),
+      height: Joi.number(),
+      depth: Joi.number(),
+    }),
+    manufacture_details: Joi.object().keys({
+      model_number: Joi.string(),
+      release_date: Joi.date()
+    }),
   }),
 };
+
 
 const getProducts = {
   query: Joi.object().keys({
@@ -34,12 +47,24 @@ const updateProduct = {
   body: Joi.object()
     .keys({
       name: Joi.string(),
-      original_price: Joi.number(),
-      description: Joi.string(),
-      stockQuantity: Joi.number(),
-      category: Joi.string(),
+    category: Joi.string(),
+    description: Joi.string(),
+    stockQuantity: Joi.number(),
+    pricing: Joi.object().keys({
+      price: Joi.number(),
       discount: Joi.number(),
-      selling_mrp: Joi.number()
+      MRP: Joi.number(),
+    }),
+    shipping_details: Joi.object().keys({
+      weight: Joi.number(),
+      width: Joi.number(),
+      height: Joi.number(),
+      depth: Joi.number(),
+    }),
+    manufacture_details: Joi.object().keys({
+      model_number: Joi.string(),
+      release_date: Joi.date()
+    }),
     })
     .min(1),
 };
