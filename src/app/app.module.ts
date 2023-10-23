@@ -11,6 +11,7 @@ import { counterReducer } from './counter/counterStore/counter.reducer';
 import { CustdataInputComponent } from './counter/custdata-input/custdata-input.component';
 import { LandingPageComponent } from './auth/components/landing-page/landing-page.component';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ count: counterReducer })
+    StoreModule.forRoot({ count: counterReducer }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
